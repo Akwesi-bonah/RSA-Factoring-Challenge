@@ -1,5 +1,9 @@
 #!/usr/bin/python3
-"""Representing RSA factoring"""
+"""Representing RSA factorinig
+    This module factorize numbers into product
+    of two smaller numbers
+"""
+
 
 import sys
 from math import isqrt

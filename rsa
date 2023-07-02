@@ -1,8 +1,16 @@
 #!/usr/bin/python3
+"""RSA Laboratories states that: 
+    for each RSA number n, there exist
+    prime numbers p and q such that n = p × q. 
+    The problem is to find these two primes, given only n.
+"""
 import sys
 from math import isqrt
 
 def factorize(num):
+    """ Generate 2 factors for a number """
+    if num % 2 == 0:
+        return "{}={}*{}".format(num, num // 2, 2)
     for i in range(2, isqrt(num) + 1):
         if num % i == 0:
             return f'{num}={num // i}*{i}'
@@ -12,11 +20,15 @@ if len(sys.argv) != 2:
     sys.exit(1)
 
 file_input = sys.argv[1]
+try:
+    with open(file_input, 'r') as file:
+        if not  file:
+            print(f"Error: can't open file {sys.argc[1]}")
 
-with open(file_input, 'r') as file:
-    if not  file:
-        print(f"Error: can't open file {sys.argc[1]}")
-
-    for value in file:
-        number = int(value)
-        print(factorize(number))
+        for value in file:
+            number = int(value)
+            print(factorize(number))
+except IOError:
+    pass
+except FileNotFoundError:
+    pass
