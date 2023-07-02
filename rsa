@@ -9,11 +9,15 @@ from math import isqrt
 
 def factorize(num):
     """ Generate 2 factors for a number """
-    if num % 2 == 0:
+    if number % 2 == 0:
         return "{}={}*{}".format(num, num // 2, 2)
-    for i in range(2, isqrt(num) + 1):
-        if num % i == 0:
-            return f'{num}={num // i}*{i}'
+    
+    for i in range(3, num // 2 + 1, 2):
+        if number % i == 0:
+            return "{}={}*{}".format(num, num // i, i)
+    
+    return "{}={}*{}".format(num, num, 1)
+
 
 if len(sys.argv) != 2:
     print('Usage: factors <filename>')
@@ -29,6 +33,4 @@ try:
             number = int(value)
             print(factorize(number))
 except IOError:
-    pass
-except FileNotFoundError:
     pass
